@@ -9,7 +9,7 @@ exports.addUser = async (req,res,next)=>{
             return res.status(409).json({message:'user already exists'})
         }
         const salt = 10
-        const hashedPassword = await bcrypt(password,salt)
+        const hashedPassword = await bcrypt.hash(password,salt)
         const newUser = new User({email:email,password:hashedPassword})
         await newUser.save()
         res.status(201).json({success:true})

@@ -24,12 +24,11 @@ const SignUpForm=()=>{
         }
         const data={
             email:emailValue,
-            password:passwordValue,
-            returnSecureToken: true
+            password:passwordValue
         }
         try {
             const res = await axios.post('http://localhost:3000/api/v1/signup',data)
-            console.log(res)
+            
         } catch (error) {
             setMessage('Something went wrong')
             setTimeout(()=>setMessage(''),2000)
