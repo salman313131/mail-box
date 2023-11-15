@@ -1,0 +1,4 @@
+mail-box-client/node_modules
+mail-box-server/node_modules
+mail-box-client/.gitignore
+mail-box-client/README.md
