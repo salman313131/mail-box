@@ -1,8 +1,12 @@
 import { useRef, useState } from "react"
 import classes from './LoginForm.module.css'
 import axios from "axios"
+import { useDispatch } from "react-redux"
+import { authActions } from "../../store/auth"
+import { Link } from "react-router-dom"
 const LoginForm=()=>{
     const [message,setMessage] = useState('')
+    const dispatch = useDispatch()
     const email = useRef()
     const password = useRef()
     const submitHandler= async (e)=>{
@@ -22,6 +26,8 @@ const LoginForm=()=>{
             const res = await axios.post('http://localhost:3000/api/v1/login',data)
             console.log('success')
             console.log(res)
+            localStorage.setItem('token',res.data.token)
+            dispatch(authActions.login(res.data.token))
         } catch (error) {
             setMessage(error.message)
             setTimeout(()=>setMessage(''),2000)
@@ -41,7 +47,7 @@ const LoginForm=()=>{
             </div>
             <p>Forgot Password</p>
             <button className={classes.button}>LogIn</button>
-            <p>New User, click to Sign Up</p>
+            <Link to='/signup'><p>New User, click to Sign Up</p></Link>
             {message && <p style={{color:'red'}}>{message}</p>}
         </form>
     )

@@ -1,5 +1,6 @@
 const User = require('../modal/users')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 exports.addUser = async (req,res,next)=>{
     const {email,password} = req.body
@@ -29,7 +30,9 @@ exports.getUser = async (req,res,next)=>{
         if(!isPasswordValid){
             return res.status(401).json({message:'user not authorized'})
         }
-        return res.status(200).json({user:user})
+        const tokenData = {userId:user._id}
+        const accessToken = jwt.sign(tokenData,'secretkey')
+        return res.status(200).json({user:user,token:accessToken})
     }catch(error){
         console.log(error)
         res.status(500).json({message:'server error'})
