@@ -1,0 +1,41 @@
+.container{
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    border: 1px solid black;
+}
+.boxButton{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.boxButton button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    color: #3498db;
+    background-color: #fff;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.boxButton button:hover {
+    color: #fff;
+    background-color: #3498db;
+}
+
+.boxButton button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.boxInbox{
+    padding-left: 10px;
+}
+.boxInbox h1{
+    margin-top: 10px
+}

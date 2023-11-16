@@ -3,10 +3,11 @@ import classes from './LoginForm.module.css'
 import axios from "axios"
 import { useDispatch } from "react-redux"
 import { authActions } from "../../store/auth"
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 const LoginForm=()=>{
     const [message,setMessage] = useState('')
     const dispatch = useDispatch()
+    const history = useHistory()
     const email = useRef()
     const password = useRef()
     const submitHandler= async (e)=>{
@@ -28,6 +29,7 @@ const LoginForm=()=>{
             console.log(res)
             localStorage.setItem('token',res.data.token)
             dispatch(authActions.login(res.data.token))
+            history.replace('/inbox')
         } catch (error) {
             setMessage(error.message)
             setTimeout(()=>setMessage(''),2000)
