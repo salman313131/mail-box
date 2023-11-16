@@ -45,7 +45,6 @@ const LoginForm=()=>{
                 <label>Password</label>
                 <input type='password' ref={password}></input>
             </div>
-            <p>Forgot Password</p>
             <button className={classes.button}>LogIn</button>
             <Link to='/signup'><p>New User, click to Sign Up</p></Link>
             {message && <p style={{color:'red'}}>{message}</p>}
