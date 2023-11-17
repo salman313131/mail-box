@@ -16,6 +16,7 @@ const corsOptions = {
 
 //router
 const userRouter = require('./routers/users')
+const mailRouetr = require('./routers/mail')
 
 //config
 app.use(cors(corsOptions));
@@ -24,6 +25,7 @@ app.use(express.json())
 
 //api
 app.use('/api/v1',userRouter)
+app.use('/api/v1',mailRouetr)
 
 mongoose.connect('mongodb+srv://jaan:jaankhan786@nodereact.mu2wjrq.mongodb.net/MailBox?retryWrites=true&w=majority')
 .then(()=>{

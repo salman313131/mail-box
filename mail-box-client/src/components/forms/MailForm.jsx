@@ -4,7 +4,9 @@ import FroalaEditorComponent from 'react-froala-wysiwyg';
 import classes from "./MailForm.module.css"
 import { useRef,useState } from 'react';
 import axios from 'axios'
+import { useSelector } from "react-redux"
 const MailForm=()=>{
+    const token = useSelector(state=>state.auth.token)
     const email = useRef()
     const subject = useRef()
     const [emailBody,setEmailBody] = useState('')
@@ -16,8 +18,12 @@ const MailForm=()=>{
             subject:subjectValue,
             body:emailBody
         }
+        const headers = {
+            "Content-Type":"application/json",
+            "Authorization": token
+        }
         try {
-            const res = await axios.post('http://localhost:3000/api/v1/mail',data)
+            const res = await axios.post('http://localhost:3000/api/v1/mail',data,{headers})
             console.log(res)
         } catch (error) {
             console.log(error)
@@ -33,7 +39,7 @@ const MailForm=()=>{
                 <FroalaEditorComponent 
                 tag='textarea'
                 model={emailBody}
-                onModelChange={e=>{ setEmailBody(e)}} 
+                onModelChange={e=>setEmailBody(e)} 
                 config={{
                     placeholderText:'Email Body ...'
                 }}
