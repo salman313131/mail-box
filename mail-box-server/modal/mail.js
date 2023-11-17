@@ -14,7 +14,11 @@ const mailSchema = new Schema({
     required: true,
   },
   subject: String,
-  body: String
+  body: String,
+  isRead:{
+    type: Boolean,
+    default :false
+  }
 });
 
 

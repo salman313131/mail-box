@@ -1,13 +1,14 @@
 import classes from './Inbox.module.css'
-import MailForm from '../forms/MailForm'
 import { useEffect } from 'react'
 import axios from "axios"
 import { useSelector,useDispatch } from "react-redux"
 import { mailActions } from '../../store/mail'
 import InboxItem from './InboxItem'
+import { useHistory } from 'react-router-dom'
 const Inbox = ()=>{
     const token = useSelector(state=>state.auth.token)
     const items = useSelector(state=>state.mail.items)
+    const history = useHistory()
     const dispatch = useDispatch()
     useEffect(()=>{
         async function getData(){
@@ -27,11 +28,15 @@ const Inbox = ()=>{
     const inboxItem = <ul>
         {items.map((item)=>(<InboxItem key={item._id} subject={item.subject} body={item.body}/>))}
     </ul> 
+    const composeHandler=()=>{
+        history.replace('/compose')
+    }
     return (
         <>
         <div className={classes.container}>
             <div className={classes.boxButton}>
-                <button>Inbox</button>
+                <button onClick={composeHandler}>Compose</button>
+                <button>Inbox<span style={{margin:'10px'}}>0</span></button>
                 <button>Send</button>
             </div>
             <div className={classes.boxInbox}>
@@ -39,7 +44,6 @@ const Inbox = ()=>{
                 {inboxItem}
             </div>
         </div>
-        <MailForm />
         </>
 
     )
