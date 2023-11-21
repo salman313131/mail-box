@@ -16,13 +16,14 @@ const MailForm=()=>{
         const data={
             email:emailValue,
             subject:subjectValue,
-            body:emailBody
+            body:emailBody.replace(/<[^>]*>/g,'')
         }
         const headers = {
             "Content-Type":"application/json",
             "Authorization": token
         }
         try {
+            console.log(data)
             const res = await axios.post('http://localhost:3000/api/v1/mail',data,{headers})
             console.log(res)
         } catch (error) {

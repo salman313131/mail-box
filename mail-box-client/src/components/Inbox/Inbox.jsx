@@ -26,7 +26,7 @@ const Inbox = ()=>{
         getData()
     },[])
     const inboxItem = <ul>
-        {items.map((item)=>(<InboxItem key={item._id} subject={item.subject} body={item.body}/>))}
+        {items.map((item)=>(<InboxItem key={item._id} id={item._id} subject={item.subject} body={item.body} isRead={item.isRead}/>))}
     </ul> 
     const composeHandler=()=>{
         history.replace('/compose')

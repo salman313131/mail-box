@@ -21,3 +21,28 @@ exports.getMail = async (req,res,next)=>{
         res.status(500).json({message:'server side error'})
     }
 }
+exports.getSingleMail = async (req,res,next)=>{
+    const id = req.params.id;
+    console.log(id)
+    try {
+        const current = await Mail.findById(id).populate('sender_user_id',['email'])
+        if(!current){
+            return res.status(404).json({message:'not found'})
+        }
+        if(!current.isRead){
+            await Mail.findByIdAndUpdate(id,{isRead:true})
+        }
+        res.status(200).json({current:current})
+    } catch (error) {
+        res.status(500).json({message:'server side error'})
+    }
+}
+exports.deleteMail= async (req,res,next)=>{
+    const id = req.params.id
+    try {
+        await Mail.findByIdAndDelete(id)
+        res.status(204).json({message:'deleted successfully'})
+    } catch (error) {
+        res.status(500).json({message:'server side error'})
+    }
+}
