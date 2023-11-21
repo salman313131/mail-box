@@ -28,7 +28,7 @@ const InboxItem=(props)=>{
     return(
         <li className={props.isRead ? classes.mail1: classes.mail}>
             <Link to={id} style={linkStyle}>
-                <div>
+                <div className={classes.list}>
                     {!props.isRead && <div className={classes.blue}> </div>}
                     <span>{props.subject}</span>
                 </div>

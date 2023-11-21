@@ -46,3 +46,11 @@ exports.deleteMail= async (req,res,next)=>{
         res.status(500).json({message:'server side error'})
     }
 }
+exports.getSentMail = async (req,res,next)=>{
+    try {
+        const sentMail = await Mail.find({sender_user_id:req.user.userId})
+        res.status(200).json({data:sentMail})
+    } catch (error) {
+        res.status(500).json({message:'server side error'})
+    }
+}

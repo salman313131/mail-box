@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     items: [],
-    currentItem: {}
+    sentItems:[],
+    currentItem: {},
+    notRead: 0
 }
 
 const mailSlice = createSlice({
@@ -10,7 +12,17 @@ const mailSlice = createSlice({
     initialState:initialState,
     reducers:{
         addInitial(state,action){
-            state.items = action.payload
+            state.items = action.payload,
+            state.notRead = action.payload.reduce((sum,item)=>{
+                if(!item.isRead){
+                    return sum+1
+                }else{
+                    return sum
+                }
+            },0)
+        },
+        addSentItems(state,action){
+            state.sentItems = action.payload
         },
         updateItems(state,action){
             const ItemIndex = state.items.findIndex(action.payload)

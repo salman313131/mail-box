@@ -25,9 +25,10 @@ const SingleMail=(props)=>{
     },[])
     return(
         <div className={classes.main}>
-            <h5>From : {current.sender_user_id.email}</h5>
-            <h1>Subject : {current.subject}</h1>
-            <p>body : {current.body}</p>
+            {!current && <p>Loading...</p>}
+            {current && <h5>From : {current.sender_user_id?.email}</h5>}
+            {current && <h1>Subject : {current.subject}</h1>}
+            {current && <p>body : {current.body}</p>}
         </div>
     )
 }

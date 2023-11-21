@@ -10,7 +10,7 @@
     padding: 10px;
     margin-top: 10px;
 }
-.boxButton button {
+.inactiveButton {
     display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
@@ -24,14 +24,27 @@
     transition: color 0.3s, background-color 0.3s;
 }
 
-.boxButton button:hover {
+.inactiveButton:hover {
     color: #fff;
     background-color: #3498db;
 }
 
-.boxButton button:disabled {
+.inactiveButton:disabled {
     cursor: not-allowed;
     opacity: 0.5;
+}
+.activeButton {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #3498db;
+    transition: color 0.3s, background-color 0.3s;
 }
 .boxInbox{
     padding-left: 10px;

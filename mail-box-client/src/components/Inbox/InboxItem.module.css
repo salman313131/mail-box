@@ -16,6 +16,13 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.list{
+    display: flex;
+    flex-direction: row;
+}
+.list div{
+    margin-right: 10px;
+}
 .blue{
     width: 10px;
     height: 10px;
