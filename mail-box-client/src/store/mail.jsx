@@ -34,6 +34,9 @@ const mailSlice = createSlice({
         },
         deleteItems(state,action){
             state.items = state.items.filter(item=>item._id!=action.payload)
+        },
+        deleteSent(state,action){
+            state.sentItems = state.sentItems.filter(item=>item._id!=action.payload)
         }
     }
 })
